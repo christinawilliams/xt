@@ -1,3 +1,2 @@
 # xt
-
-Module containing astronomical software
+A repository of python code written by Xtina for astronomical applications
