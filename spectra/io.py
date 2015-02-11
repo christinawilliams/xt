@@ -26,28 +26,28 @@ def closest(array,value):
 
 def specread(filename, wlmin, wlmax):
     """ Read in 1-D fits spectrum, return wavelengths and fluxes """
-   print 'opening stuff'
-   x = pyfits.open(filename)
-   # get header info, to calculate wavelength array
-   crval = x[0].header['CRVAL1']
-   cdelt = x[0].header['CDELT1']
-   bunit = x[0].header['BUNIT']
-   flux = x[0].data
-   x.close()
+    print 'opening stuff'
+    x = pyfits.open(filename)
+    # get header info, to calculate wavelength array
+    crval = x[0].header['CRVAL1']
+    cdelt = x[0].header['CDELT1']
+    bunit = x[0].header['BUNIT']
+    flux = x[0].data
+    x.close()
+    
+    wl = np.zeros(len(flux))
+    
+    for i in range(len(flux)):
+        if i == 0:
+            wl[i] = crval
+        else:
+            wl[i] = wl[i-1]+cdelt
 
-   wl = np.zeros(len(flux))
-   
-   for i in range(len(flux)):
-      if i == 0:
-         wl[i] = crval
-      else:
-         wl[i] = wl[i-1]+cdelt
-
-   indmin = closest(wl, wlmin) # 1270
-   indmax = closest(wl, wlmax) # 1330
-   wl= wl[indmin:indmax]
-   flux=flux[indmin:indmax]
-   return wl, flux 
+    indmin = closest(wl, wlmin) # 1270
+    indmax = closest(wl, wlmax) # 1330
+    wl= wl[indmin:indmax]
+    flux=flux[indmin:indmax]
+    return wl, flux 
    
 def hello():
     print "hello world"

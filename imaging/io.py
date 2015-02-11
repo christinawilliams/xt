@@ -32,7 +32,7 @@ def make_region(ra,dec,fn,label="",radius=".75",color="green",fontsize="10"):
     
     for i in range(len(ra)):
         format = 'circle(%f,%f,%s")# color=%s width=1 text={%s}\n'
-        values=(ra[i],dec[i],radius,color,label)
+        values=(ra[i],dec[i],radius,color,label[i])
         file.write(format % values)
-        print format % values
+        
     file.close()
