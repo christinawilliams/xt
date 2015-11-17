@@ -29,8 +29,10 @@ def make_region(ra,dec,fn,label="",radius=".75",color="green",fontsize="10"):
                fontsize+' normal" select=1 highlite=1 dash=0 fixed=0 edit=1'+ 
                ' move=1 delete=1 include=1 source=1\n')
     file.write('fk5\n')
-    
+    print "length of label is",len(label)
+    print label[0]
     for i in range(len(ra)):
+        print label[i]
         format = 'circle(%f,%f,%s")# color=%s width=1 text={%s}\n'
         values=(ra[i],dec[i],radius,color,label[i])
         file.write(format % values)
